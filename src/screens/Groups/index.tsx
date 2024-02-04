@@ -5,9 +5,10 @@ import { Header } from '@components/Header';
 import { Container } from './styles';
 import { TitleWithSubtitle } from '@components/TitleWithSubtitle';
 import { GroupCard } from '@components/GroupCard';
+import { ListEmpty } from '@components/ListEmpty';
 
 export function Groups() {
-  const [groups, setGroups] = useState<string[]>(['Time 1', 'Time 2', 'Time 3']);
+  const [groups, setGroups] = useState<string[]>([]);
 
   return (
     <Container>
@@ -21,6 +22,10 @@ export function Groups() {
         keyExtractor={item => item}
         renderItem={({ item }) => (
           <GroupCard title={item} />
+        )}
+        contentContainerStyle={groups.length === 0 && { flex: 1 }}
+        ListEmptyComponent={() => (
+          <ListEmpty message="Que tal cadastrar a primeira turma?" />
         )}
       />
     </Container>
