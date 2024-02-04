@@ -14,7 +14,6 @@ export const Title = styled.Text`
     font-family: ${theme.FONT_FAMILY.BOLD};
 
     color: ${theme.COLORS.WHITE};
-    background-color: ${theme.COLORS.WHITE};
   ` };
 `;
 
@@ -25,7 +24,6 @@ export const Subtitle = styled.Text`
     font-size: ${theme.FONT_SIZE.MD}px;
     font-family: ${theme.FONT_FAMILY.REGULAR};
 
-    color: ${theme.COLORS.WHITE};
-    background-color: ${theme.COLORS.GRAY_300};
+    color: ${theme.COLORS.GRAY_300};
   ` };
 `;
