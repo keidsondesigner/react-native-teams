@@ -8,7 +8,7 @@ type Props = {
 }
 
 // Se PRIMARY cor GREEN_700 se NÃO cor RED_DARK; 
-export const Container = styled(TouchableOpacity) <Props>`
+export const Container = styled(TouchableOpacity)<Props>`
   flex: 1;
   min-height: 56px;
   max-height: 56px;
