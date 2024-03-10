@@ -30,6 +30,12 @@ export function Groups() {
     }
   }
 
+  //Buscar "um grupo" no LocalStorage e mostrar os times desse grupo(turma);
+  function handleOpenGroup(group: string) {
+    navigation.navigate('players', { group });
+  }
+
+
   // Buscar grupos quando navegar para a tela groups;
   useFocusEffect(useCallback(() => {
     fetchGroups();
@@ -46,7 +52,10 @@ export function Groups() {
         data={groups}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <GroupCard title={item} />
+          <GroupCard 
+            title={item} 
+            onPress={() => handleOpenGroup(item)}
+          />
         )}
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
         ListEmptyComponent={() => (
