@@ -2,9 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { Alert, FlatList, TextInput } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
-import { AppError } from '@utils/AppError';
 import { playerAddByGroup } from '@storage/player/playerAddByGroup';
 import { playerGetByGroupAndTeam } from '@storage/player/playerGetByGroupAndTeam';
+import { playerRemoveByGroup } from '@storage/player/playerRemoveByGroup';
+
+import { AppError } from '@utils/AppError';
 import { PlayerStorageDTO } from '@storage/player/playerStorageDTO';
 
 import { Header } from '@components/Header';
@@ -71,6 +73,16 @@ export function Players() {
     }
   }
 
+  async function handlePlayerRemove(playerName: string) {
+    try {
+      await playerRemoveByGroup(playerName, group);
+      fetchPlayersByTeam();
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Remover pessoa', 'Não foi possível remover essa pessoa.');
+    }
+  }
+
   useEffect(() => {
     fetchPlayersByTeam();
   }, [team]); // executa quando o estado "team" muda; Quando alterno entre os filtros;
@@ -124,7 +136,7 @@ export function Players() {
         renderItem={({ item }) => (
           <PlayerCard 
             name={item.name}
-            onRemove={() => { }}
+            onRemove={() => handlePlayerRemove(item.name)}
           />
         )}
         ListEmptyComponent={() => (
