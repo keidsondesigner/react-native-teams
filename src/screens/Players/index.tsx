@@ -91,6 +91,8 @@ export function Players() {
           value={newPlayerName}
           placeholder='Nome da pessoa'
           autoCorrect={false}
+          onSubmitEditing={handleAddPlayer}
+          returnKeyType='done'
         />
         <ButtonIcon 
           icon='add'
