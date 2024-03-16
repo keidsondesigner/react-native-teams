@@ -4,6 +4,7 @@ import { useRoute } from '@react-navigation/native';
 
 import { AppError } from '@utils/AppError';
 import { playerAddByGroup } from '@storage/player/playerAddByGroup';
+import { playerGetByGroupAndTeam } from '@storage/player/playerGetByGroupAndTeam';
 import { PlayerStorageDTO } from '@storage/player/playerStorageDTO';
 
 import { Header } from '@components/Header';
@@ -16,7 +17,6 @@ import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
 
 import { Container, Form, HeaderList, NumberOfPlayers } from './styles';
-import { playerGetByGroupAndTeam } from '@storage/player/playerGetByGroupAndTeam';
 
 type RouteParams = {
   group: string;
