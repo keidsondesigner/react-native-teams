@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+
+import { groupsGetAll } from '@storage/group/groupGetAll';
 
 import { Header } from '@components/Header';
 import { Container } from './styles';
@@ -18,6 +20,27 @@ export function Groups() {
     navigation.navigate('new');
   }
 
+  //Buscar grupos no LocalStorage
+  async function fetchGroups() {
+    try {
+      const data = await groupsGetAll();
+      setGroups(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //Buscar "um grupo" no LocalStorage e mostrar os times desse grupo(turma);
+  function handleOpenGroup(group: string) {
+    navigation.navigate('players', { group });
+  }
+
+
+  // Buscar grupos quando navegar para a tela groups;
+  useFocusEffect(useCallback(() => {
+    fetchGroups();
+  }, []));
+
   return (
     <Container>
       <Header />
@@ -29,7 +52,10 @@ export function Groups() {
         data={groups}
         keyExtractor={item => item}
         renderItem={({ item }) => (
-          <GroupCard title={item} />
+          <GroupCard 
+            title={item} 
+            onPress={() => handleOpenGroup(item)}
+          />
         )}
         contentContainerStyle={groups.length === 0 && { flex: 1 }}
         ListEmptyComponent={() => (
