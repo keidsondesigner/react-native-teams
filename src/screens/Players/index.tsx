@@ -33,6 +33,7 @@ export function Players() {
   const navigation = useNavigation();
 
   const route = useRoute();
+  // Recuperar os parâmetros passados entre as rotas
   const { group } = route.params as RouteParams;
 
   const newPlayerNameInputRef = useRef<TextInput>(null);
